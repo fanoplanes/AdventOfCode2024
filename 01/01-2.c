@@ -18,7 +18,7 @@ int main(void)
 		return -1;
 	}
 
-	char cr;
+	char cr = 0;
 	size_t lines = 0;
 
 	while(cr != EOF) {
