@@ -36,15 +36,15 @@ int main(void)
 	int fst[lines];
 	int snd[lines];
 
-	for(int i = 0; i < lines; i++) {
-		fscanf(fp, "%i   %i\n", &fst[i], &snd[i]);
+	for(size_t i = 0; i < lines; i++) {
+		fscanf(fp, "%i%i\n", &fst[i], &snd[i]);
 	}
 	fclose(fp);
 
 	int answer = 0;
 
-	for(int i = 0; i < lines; i++) {
-		for(int j = 0; j < lines; j++) {
+	for(size_t i = 0; i < lines; i++) {
+		for(size_t j = 0; j < lines; j++) {
 			if (fst[i] == snd[j]) {
 				answer += fst[i];
 			}
