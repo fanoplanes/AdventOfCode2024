@@ -35,7 +35,6 @@
 (define (random-bullshit-go line)
   (if (ormap process (combinations line (sub1 (length line)))) 1 0))
 
-(define answer (for/sum ([i numberified])
-  (random-bullshit-go i)))
+(define answer (for/sum ([i numberified]) (random-bullshit-go i)))
 
 answer

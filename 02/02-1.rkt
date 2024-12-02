@@ -32,5 +32,4 @@
 (define (process line)
   (if (and (check-order line) (check-change line)) 1 0))
 
-(for/sum ([i numberified])
-  (process i))
+(for/sum ([i numberified]) (process i))
