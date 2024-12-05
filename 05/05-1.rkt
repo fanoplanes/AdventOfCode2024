@@ -15,7 +15,6 @@
 
 (define (ord<? x y)
   (cond
-    [(member (list x y) order) #t]
     [(member (list y x) order) #f]
     [else #t]))
 
