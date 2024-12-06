@@ -49,7 +49,12 @@
         [(member step obstacles) (walk-obst index (modulo (add1 dir) 4) past obstacles)]
         [else (walk-obst step dir (cons (list index dir) past) obstacles)])))
 
-(define chomk (chunks-of (cdr p1-res) 553)) ;magic number, yay (it's one less than the result from part 1)
+(define pieces
+  (apply max
+         (for/list ([i (in-range 1 (processor-count))])
+           (if (= (modulo (length (cdr p1-res)) i) 0) i 1))))
+
+(define chomk (chunks-of (cdr p1-res) (/ (length (cdr p1-res)) pieces)))
 
 (define (chunk ch)
   (for/sum ([i ch]) (walk-obst start-index 0 '() (cons i init-obstacles))))
