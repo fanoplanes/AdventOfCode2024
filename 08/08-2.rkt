@@ -53,11 +53,11 @@
 (define (all-antinodes-for-n n)
   (remove-duplicates (append* (map (λ (tp) (antinodes-of-type tp n)) grouped))))
 
-;; return all antinodes for harmonics 2<=n<100 (I have no real reason for stopping at 100,
-;; I just increased it until the result stopped increasing)
-;; TODO: find a better way to get all harmonics
+;; upper bound for the number of harmonics is the length of the diagonal
+(define diagonal (ceiling (sqrt (+ (* width width) (* height height)))))
+;; return all antinodes for harmonics 2<=n<diagonal
 (define resonant
-  (remove-duplicates (append* (for/list ([n (in-range 1 100)])
+  (remove-duplicates (append* (for/list ([n (in-range 1 diagonal)])
                                 (all-antinodes-for-n n)))))
 
 (length resonant)
