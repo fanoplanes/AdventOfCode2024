@@ -26,8 +26,10 @@
 
 (define (in-bounds? pt)
   (cond
+    ; x coordinate okay?
     [(< (car pt) 0) #f]
     [(>= (car pt) width) #f]
+    ; y coordinate okay?
     [(< (cadr pt) 0) #f]
     [(>= (cadr pt) height) #f]
     [else #t]))
