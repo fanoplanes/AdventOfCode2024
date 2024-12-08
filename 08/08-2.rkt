@@ -38,18 +38,16 @@
 (define (antinodes pt-1 pt-2 n)
   (let* ([pt1 (car pt-1)]
          [pt2 (car pt-2)])
-    (list (list (- (* (first pt1) n) (* (first pt2) (sub1 n)))
-                (- (* (second pt1) n) (* (second pt2) (sub1 n))))
-          (list (- (* (first pt2) n) (* (first pt1) (sub1 n)))
-                (- (* (second pt2) n) (* (second pt1) (sub1 n)))))))
+    (list (- (* (first pt1) n) (* (first pt2) (sub1 n)))
+          (- (* (second pt1) n) (* (second pt2) (sub1 n))))))
 
 ;; returns a list of n-th antinodes for one kind of antenna (takes a single sublist from `grouped)
 (define (antinodes-of-type type n)
   (filter in-bounds?
-          (remove-duplicates (append* (for*/list ([i type]
-                                                  [j type]
-                                                  #:unless (eq? i j))
-                                        (antinodes i j n))))))
+          (remove-duplicates (for*/list ([i type]
+                                         [j type]
+                                         #:unless (eq? i j))
+                               (antinodes i j n)))))
 
 ;; get n-th antinodes for all types of antennas (runs through all of `grouped`)
 (define (all-antinodes-for-n n)

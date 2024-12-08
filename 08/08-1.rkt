@@ -34,20 +34,19 @@
     [(>= (cadr pt) height) #f]
     [else #t]))
 
-;; return the antinodes for one pair of points
+;; return the antinode for one pair of points
 (define (antinodes pt-1 pt-2)
   (let* ([pt1 (car pt-1)]
          [pt2 (car pt-2)])
-    (list (list (- (* (first pt1) 2) (first pt2)) (- (* (second pt1) 2) (second pt2)))
-          (list (- (* (first pt2) 2) (first pt1)) (- (* (second pt2) 2) (second pt1))))))
+    (list (- (* (first pt1) 2) (first pt2)) (- (* (second pt1) 2) (second pt2)))))
 
 ;; returns a list of antinodes for one kind of antenna (takes a single sublist from `grouped)
 (define (antinodes-of-type type)
   (filter in-bounds?
-          (remove-duplicates (append* (for*/list ([i type]
-                                                  [j type]
-                                                  #:unless (eq? i j))
-                                        (antinodes i j))))))
+          (remove-duplicates (for*/list ([i type]
+                                         [j type]
+                                         #:unless (eq? i j))
+                               (antinodes i j)))))
 
 ;; run through all antenna types (all of `grouped), put all antinodes in a list
 (define all-antinodes (remove-duplicates (append* (map antinodes-of-type grouped))))
