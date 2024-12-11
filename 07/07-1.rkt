@@ -1,4 +1,8 @@
-#lang racket
+#lang racket/base
+
+(require racket/file
+         racket/list
+         racket/string)
 
 (define input (map (lambda (line) (string-split line ":")) (file->lines "input")))
 (define target (map (lambda (line) (string->number (car line))) input))

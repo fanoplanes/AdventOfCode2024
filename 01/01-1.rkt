@@ -1,4 +1,7 @@
-#lang racket
+#lang racket/base
+
+(require racket/file
+         racket/string)
 
 (define input-list (file->lines "input"))
 

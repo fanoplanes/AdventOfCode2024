@@ -1,6 +1,8 @@
-#lang racket
+#lang racket/base
 
-(require algorithms)
+(require algorithms
+         racket/file
+         racket/list)
 
 (define input (file->lines "input"))
 

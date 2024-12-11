@@ -1,4 +1,9 @@
-#lang racket
+#lang racket/base
+
+(require memo
+         racket/file
+         racket/list
+         racket/string)
 
 (define input (file->lines "input"))
 
@@ -13,7 +18,7 @@
 (define order (map split-order (take input (index-of input ""))))
 (define data (map split-data (drop input (add1 (index-of input "")))))
 
-(define (ord<? x y)
+(define/memoize (ord<? x y)
   (cond
     [(member (list y x) order) #f]
     [else #t]))
@@ -37,4 +42,4 @@
 
 (define result (for/sum ([i unsorted-now-sorted]) (get-middle-number i)))
 
-(pretty-print result)
+result
